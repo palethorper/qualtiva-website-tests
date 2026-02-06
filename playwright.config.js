@@ -138,7 +138,8 @@ export default defineConfig({
   },
   // Output directory for test artifacts
   outputDir: 'test-results/',
-  // Global setup and teardown
-  globalSetup: require.resolve('./global-setup.js'),
-  globalTeardown: require.resolve('./global-teardown.js'),
+  // Global setup and teardown disabled to prevent workflow hangs
+  // The setup was attempting browser launches that could timeout
+  // globalSetup: require.resolve('./global-setup.js'),
+  // globalTeardown: require.resolve('./global-teardown.js'),
 });

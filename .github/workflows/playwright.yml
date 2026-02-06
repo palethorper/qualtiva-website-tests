@@ -40,7 +40,21 @@ jobs:
       run: npx playwright install --with-deps
       
     - name: Run Playwright tests
-      run: npm run test:ci
+      run: |
+        echo "Starting test execution..."
+        npm run test:ci &
+        TEST_PID=$!
+        
+        # Monitor test progress
+        while kill -0 $TEST_PID 2>/dev/null; do
+          echo "Tests are running... ($(date '+%H:%M:%S'))"
+          sleep 30
+        done
+        
+        wait $TEST_PID
+        TEST_EXIT_CODE=$?
+        echo "Tests completed with exit code: $TEST_EXIT_CODE"
+        exit $TEST_EXIT_CODE
       env:
         # Add any environment variables needed for testing
         CI: true
@@ -86,7 +100,20 @@ jobs:
       run: npx playwright install --with-deps
       
     - name: Run mobile tests
-      run: npm run test:mobile
+      run: |
+        echo "Starting mobile test execution..."
+        npm run test:mobile &
+        TEST_PID=$!
+        
+        while kill -0 $TEST_PID 2>/dev/null; do
+          echo "Mobile tests running... ($(date '+%H:%M:%S'))"
+          sleep 30
+        done
+        
+        wait $TEST_PID
+        TEST_EXIT_CODE=$?
+        echo "Mobile tests completed with exit code: $TEST_EXIT_CODE"
+        exit $TEST_EXIT_CODE
       env:
         CI: true
         BASE_URL: https://www-dev.analytiqa.cloud/
@@ -123,7 +150,20 @@ jobs:
       run: npx playwright install --with-deps
       
     - name: Run performance tests
-      run: npm run test:performance
+      run: |
+        echo "Starting performance test execution..."
+        npm run test:performance &
+        TEST_PID=$!
+        
+        while kill -0 $TEST_PID 2>/dev/null; do
+          echo "Performance tests running... ($(date '+%H:%M:%S'))"
+          sleep 30
+        done
+        
+        wait $TEST_PID
+        TEST_EXIT_CODE=$?
+        echo "Performance tests completed with exit code: $TEST_EXIT_CODE"
+        exit $TEST_EXIT_CODE
       env:
         CI: true
         BASE_URL: https://www-dev.analytiqa.cloud/
@@ -160,7 +200,20 @@ jobs:
       run: npx playwright install --with-deps
       
     - name: Run accessibility tests
-      run: npm run test:accessibility
+      run: |
+        echo "Starting accessibility test execution..."
+        npm run test:accessibility &
+        TEST_PID=$!
+        
+        while kill -0 $TEST_PID 2>/dev/null; do
+          echo "Accessibility tests running... ($(date '+%H:%M:%S'))"
+          sleep 30
+        done
+        
+        wait $TEST_PID
+        TEST_EXIT_CODE=$?
+        echo "Accessibility tests completed with exit code: $TEST_EXIT_CODE"
+        exit $TEST_EXIT_CODE
       env:
         CI: true
         BASE_URL: https://www-dev.analytiqa.cloud/
@@ -197,7 +250,20 @@ jobs:
       run: npx playwright install --with-deps
       
     - name: Run best practices tests
-      run: npm run test:best-practices
+      run: |
+        echo "Starting best practices test execution..."
+        npm run test:best-practices &
+        TEST_PID=$!
+        
+        while kill -0 $TEST_PID 2>/dev/null; do
+          echo "Best practices tests running... ($(date '+%H:%M:%S'))"
+          sleep 30
+        done
+        
+        wait $TEST_PID
+        TEST_EXIT_CODE=$?
+        echo "Best practices tests completed with exit code: $TEST_EXIT_CODE"
+        exit $TEST_EXIT_CODE
       env:
         CI: true
         BASE_URL: https://www-dev.analytiqa.cloud/
