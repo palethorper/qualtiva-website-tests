@@ -53,18 +53,18 @@ jobs:
         AQA_USER: ${{ secrets.AQA_USER }}
         AQA_PASSWORD: ${{ secrets.AQA_PASSWORD }}
         AQA_ENDPOINT: ${{ secrets.AQA_ENDPOINT }}
-      run: |
-        ./scripts/aqa-post-results.ps1 \
-          -ResultsDir ./test-results \
-          -FileFilter "*results.xml" \
-          -ResultFormat junit \
-          -Engine playwright \
-          -Tags "smoke" \
-          -Team "web-developers" \
-          -Project "qualtiva-website-tests" \
-          -Application "qualtiva-website" \
-          -Product "qualtiva" \
-          -Environment "dev"
+      run: >
+        pwsh -File ./scripts/aqa-post-results.ps1
+        -ResultsDir ./test-results
+        -FileFilter "*results.xml"
+        -ResultFormat junit
+        -Engine playwright
+        -Tags "smoke"
+        -Team "web-developers"
+        -Project "qualtiva-website-tests"
+        -Application "qualtiva-website"
+        -Product "qualtiva"
+        -Environment "dev"
 
     - name: Upload Smoke HTML Report
       uses: actions/upload-artifact@v4
