@@ -45,7 +45,7 @@ jobs:
       env:
         AQA_USER: ${{ secrets.AQA_USER }}
         AQA_PASSWORD: ${{ secrets.AQA_PASSWORD }}
-        AQA_ENDPOINT: ${{ secrets.AQA_ENDPOINT }}
+        AQA_ENDPOINT: ${{ vars.AQA_ENDPOINT }}
       run: >
         pwsh -File ./scripts/aqa-post-results.ps1
         -ResultsDir ./test-results
