@@ -57,7 +57,7 @@ jobs:
           -ResultFormat junit \
           -Engine playwright \
           -Tags "smoke" \
-          -Team "qualtiva" \
+          -Team "web-developers" \
           -Project "qualtiva-website-tests" \
           -Application "qualtiva-website" \
           -Product "qualtiva" \
