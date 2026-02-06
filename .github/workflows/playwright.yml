@@ -2,9 +2,7 @@ name: Qualtiva Website Playwright Tests
 
 on:
   push:
-    branches: [ main, develop ]
   pull_request:
-    branches: [ main, develop ]
   schedule:
     # Run tests daily at 2 AM Sydney/Australia time (AEDT - UTC+11, winter AEST - UTC+10)
     # AEDT (Oct-Apr): 2am Sydney = 3pm UTC previous day
@@ -88,7 +86,6 @@ jobs:
     name: Qualtiva Solutions Website Tests
     runs-on: ubuntu-latest
     needs: smoke
-    if: false
     
     strategy:
       fail-fast: false
