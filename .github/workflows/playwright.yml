@@ -100,7 +100,7 @@ jobs:
       run: npx playwright install --with-deps
       
     - name: Run Playwright tests (Chromium only)
-      run: npx playwright test --project=chromium --reporter=html,junit,json
+      run: npx playwright test --project=chromium
       timeout-minutes: 30
       env:
         # Add any environment variables needed for testing

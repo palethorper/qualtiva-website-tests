@@ -15,8 +15,8 @@
         "test:best-practices": "playwright test web-build-best-practices.spec.js",
         "test:cross-browser": "playwright test cross-browser-compatibility.spec.js",
         "test:mobile-responsive": "playwright test mobile-responsiveness.spec.js",
-        "test:smoke": "playwright test smoke.spec.js --reporter=html,junit,json",
-        "test:ci": "playwright test --reporter=html,junit,json",
+        "test:smoke": "playwright test smoke.spec.js",
+        "test:ci": "playwright test",
         "report": "playwright show-report",
         "install-browsers": "playwright install",
         "codegen": "playwright codegen https://www-dev.analytiqa.cloud/"
