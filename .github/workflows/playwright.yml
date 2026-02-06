@@ -17,8 +17,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        # Test on different Node.js versions
-        node-version: [18, 20]
+        # Test on latest Node.js version
+        node-version: [20]
     
     steps:
     - name: Checkout code
