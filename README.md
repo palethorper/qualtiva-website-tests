@@ -218,16 +218,22 @@ jobs:
    - Check network connectivity to the website
    - **Important**: Avoid using `waitForLoadState('networkidle')` as it can cause tests to hang indefinitely on websites with persistent connections (WebSockets, long-polling, SSE). Use `'load'` or `'domcontentloaded'` instead.
 
-3. **Tests Hanging or Not Completing**:
+3. **CI Workflow Appears Stuck**:
+   - The workflow includes progress monitoring that outputs timestamps every 30 seconds
+   - Check the "Run Playwright tests" step for progress indicators
+   - If no progress indicators appear after 2 minutes, the job may be genuinely stuck
+   - Global setup/teardown hooks are disabled to prevent browser launch hangs
+
+4. **Tests Hanging or Not Completing**:
    - If tests appear stuck, check for `waitForLoadState('networkidle')` usage
    - Replace with `waitForLoadState('load')` which waits for the page load event
    - The `'load'` state is more reliable and doesn't wait for all network activity to cease
 
-4. **Mobile Test Issues**:
+5. **Mobile Test Issues**:
    - Ensure mobile viewport is set correctly
    - Check for mobile-specific selectors
 
-5. **Performance Test Failures**:
+6. **Performance Test Failures**:
    - Verify network conditions
    - Check for heavy resources on the website
 
