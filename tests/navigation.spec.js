@@ -20,7 +20,7 @@ test.describe('Qualtiva Solutions - Navigation', () => {
           console.log(`Testing navigation to: ${linkText} (${href})`);
           
           // Handle external links differently
-          if (href.startsWith('http') && !href.includes('dev.analytiqa.cloud')) {
+          if (href.startsWith('http') && !href.includes('analytiqa.cloud') && !href.includes('qualtiva.solutions')) {
             // For external links, just verify they exist
             await expect(link).toBeVisible();
           } else {

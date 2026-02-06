@@ -10,7 +10,7 @@ test.describe('Qualtiva Solutions - Cross-Browser Compatibility', () => {
     test('should load homepage in all browsers', async ({ page, browserName }) => {
       // Basic page load test
       await expect(page).toHaveTitle(/Qualtiva/i);
-      await expect(page).toHaveURL(/qualtiva\.solutions/);
+      await expect(page).toHaveURL(/analytiqa|qualtiva/);
       
       // Check if main content is visible
       const body = page.locator('body');

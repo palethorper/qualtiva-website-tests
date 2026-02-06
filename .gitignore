@@ -1,8 +1,8 @@
 
-junit-results/
-test-results/
-playwright-report/
-node_modules/
+junit-results*/
+test-results*/
+playwright-report*/
+node_modules*/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

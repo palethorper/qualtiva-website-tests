@@ -7,7 +7,7 @@ test.describe('Qualtiva Solutions - Home Page', () => {
 
   test('should load homepage successfully', async ({ page }) => {
     await expect(page).toHaveTitle(/Qualtiva/i);
-    await expect(page).toHaveURL('https://dev.analytiqa.cloud/');
+    await expect(page).toHaveURL(/analytiqa|qualtiva/);
   });
 
   test('should display main navigation menu', async ({ page }) => {

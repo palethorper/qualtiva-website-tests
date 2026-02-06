@@ -1,6 +1,6 @@
 # Qualtiva Solutions Website Test Suite
 
-A comprehensive Playwright test suite for the Qualtiva Solutions website (https://dev.analytiqa.cloud) that covers web build best practices, cross-browser compatibility, and mobile responsiveness.
+A comprehensive Playwright test suite for the Qualtiva Solutions website (https://www-dev.analytiqa.cloud/) that covers web build best practices, cross-browser compatibility, and mobile responsiveness.
 
 ## 🚀 Features
 
@@ -173,7 +173,7 @@ Edit `playwright.config.js` to:
 Set environment variables for different configurations:
 ```bash
 # Run tests against dev environment
-BASE_URL=https://dev.analytiqa.cloud npm test
+BASE_URL=https://www-dev.analytiqa.cloud/ npm test
 
 # Run tests with specific browser
 BROWSER=firefox npm test
@@ -254,4 +254,4 @@ For issues or questions:
 
 ---
 
-**Note**: This test suite assumes that the published content on https://dev.analytiqa.cloud is correct and focuses on testing functionality, performance, and best practices rather than content validation. 
+**Note**: This test suite assumes that the published content on https://www-dev.analytiqa.cloud/ is correct and focuses on testing functionality, performance, and best practices rather than content validation. 

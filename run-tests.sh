@@ -71,6 +71,15 @@ run_tests() {
     local description=$2
     
     print_status "Running $description..."
+    if [ -n "$BASE_URL" ]; then
+        print_status "Using BASE_URL: $BASE_URL"
+    else
+        print_status "Using default BASE_URL: https://www-dev.analytiqa.cloud/"
+    fi
+    local junit_dir="./junit-results"
+    mkdir -p "$junit_dir"
+    export PLAYWRIGHT_JUNIT_OUTPUT_DIR="$junit_dir"
+    export PLAYWRIGHT_JUNIT_OUTPUT_NAME="junit-$(date +%Y%m%d-%H%M%S).xml"
     npm run $test_type
     
     if [ $? -eq 0 ]; then
@@ -85,7 +94,7 @@ run_tests() {
 show_help() {
     echo "Qualtiva Solutions Website Test Runner"
     echo ""
-    echo "Usage: $0 [OPTION]"
+    echo "Usage: $0 [OPTION] [BASE_URL]"
     echo ""
     echo "Options:"
     echo "  all              Run all tests across all browsers"
@@ -96,14 +105,23 @@ show_help() {
     echo "  best-practices   Run web build best practices tests only"
     echo "  cross-browser    Run cross-browser compatibility tests only"
     echo "  mobile-responsive Run mobile responsiveness tests only"
+    echo "  ci               Run tests with CI reporters (html, junit, json)"
+    echo "  codegen          Run Playwright codegen against site"
     echo "  setup            Install dependencies and browsers"
     echo "  report           Show test report"
     echo "  help             Show this help message"
     echo ""
+    echo "Environment Variables:"
+    echo "  BASE_URL         Base URL for tests (default: https://www-dev.analytiqa.cloud/)"
+    echo ""
     echo "Examples:"
     echo "  $0 setup         # Install dependencies and browsers"
+    echo "  $0 all           # Run all tests against dev site"
+    echo "  BASE_URL=https://www.qualtiva.solutions $0 all  # Run tests against prod"
     echo "  $0 all           # Run all tests"
     echo "  $0 mobile        # Run mobile tests only"
+    echo "  $0 ci            # Run tests with CI reporters"
+    echo "  $0 codegen       # Open Playwright codegen"
     echo "  $0 report        # Show test report"
 }
 
@@ -146,6 +164,26 @@ case "${1:-help}" in
     "mobile-responsive")
         check_dependencies
         run_tests "test:mobile-responsive" "Mobile responsiveness tests"
+        ;;
+    "ci")
+        check_dependencies
+        print_status "Running tests with CI reporters..."
+        if [ -n "$BASE_URL" ]; then
+            print_status "Using BASE_URL: $BASE_URL"
+        else
+            print_status "Using default BASE_URL: https://www-dev.analytiqa.cloud/"
+        fi
+        junit_dir="./junit-results"
+        mkdir -p "$junit_dir"
+        export PLAYWRIGHT_JUNIT_OUTPUT_DIR="$junit_dir"
+        export PLAYWRIGHT_JUNIT_OUTPUT_NAME="junit-$(date +%Y%m%d-%H%M%S).xml"
+        npx playwright test --reporter=html,junit,json
+        ;;
+    "codegen")
+        check_dependencies
+        local codegen_url="${BASE_URL:-https://www-dev.analytiqa.cloud/}"
+        print_status "Launching Playwright codegen for: $codegen_url"
+        npx playwright codegen "$codegen_url"
         ;;
     "report")
         if [ -d "playwright-report" ]; then

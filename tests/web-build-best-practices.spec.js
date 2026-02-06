@@ -78,7 +78,7 @@ test.describe('Qualtiva Solutions - Web Build Best Practices', () => {
       if (await canonical.count() > 0) {
         const href = await canonical.getAttribute('href');
         expect(href).toBeTruthy();
-        expect(href).toContain('dev.analytiqa.cloud');
+        expect(href).toMatch(/analytiqa\.cloud|qualtiva\.solutions/);
       }
     });
   });

@@ -41,6 +41,7 @@ jobs:
       env:
         # Add any environment variables needed for testing
         CI: true
+        BASE_URL: https://www-dev.analytiqa.cloud/
         
     - name: Upload test results
       uses: actions/upload-artifact@v4
@@ -85,6 +86,7 @@ jobs:
       run: npm run test:mobile
       env:
         CI: true
+        BASE_URL: https://www-dev.analytiqa.cloud/
         
     - name: Upload mobile test results
       uses: actions/upload-artifact@v4
@@ -121,6 +123,7 @@ jobs:
       run: npm run test:performance
       env:
         CI: true
+        BASE_URL: https://www-dev.analytiqa.cloud/
         
     - name: Upload performance test results
       uses: actions/upload-artifact@v4
@@ -157,6 +160,7 @@ jobs:
       run: npm run test:accessibility
       env:
         CI: true
+        BASE_URL: https://www-dev.analytiqa.cloud/
         
     - name: Upload accessibility test results
       uses: actions/upload-artifact@v4
@@ -193,6 +197,7 @@ jobs:
       run: npm run test:best-practices
       env:
         CI: true
+        BASE_URL: https://www-dev.analytiqa.cloud/
         
     - name: Upload best practices test results
       uses: actions/upload-artifact@v4

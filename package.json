@@ -18,7 +18,7 @@
         "test:ci": "playwright test --reporter=html,junit,json",
         "report": "playwright show-report",
         "install-browsers": "playwright install",
-        "codegen": "playwright codegen https://dev.analytiqa.cloud"
+        "codegen": "playwright codegen https://www-dev.analytiqa.cloud/"
     },
     "devDependencies": {
         "@playwright/test": "^1.54.1",

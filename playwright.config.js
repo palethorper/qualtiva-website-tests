@@ -1,5 +1,8 @@
 import { defineConfig, devices } from '@playwright/test';
 
+// Get base URL from environment variable, default to dev
+const baseURL = process.env.BASE_URL || 'https://www-dev.analytiqa.cloud/';
+
 export default defineConfig({
   testDir: './tests',
   fullyParallel: true,
@@ -12,7 +15,7 @@ export default defineConfig({
     ['junit', { outputFile: 'test-results/results.xml' }]
   ],
   use: {
-    baseURL: 'https://dev.analytiqa.cloud',
+    baseURL: baseURL,
     trace: 'on-first-retry',
     screenshot: 'only-on-failure',
     video: 'retain-on-failure',
