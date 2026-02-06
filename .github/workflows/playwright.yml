@@ -124,6 +124,26 @@ jobs:
         # Add any environment variables needed for testing
         CI: true
         BASE_URL: https://www-dev.analytiqa.cloud/
+
+    - name: Post results to AQA
+      if: always()
+      shell: pwsh
+      env:
+        AQA_USER: ${{ secrets.AQA_USER }}
+        AQA_PASSWORD: ${{ secrets.AQA_PASSWORD }}
+        AQA_ENDPOINT: ${{ vars.AQA_ENDPOINT }}
+      run: >
+        pwsh -File ./scripts/aqa-post-results.ps1
+        -ResultsDir ./test-results
+        -FileFilter "*results.xml"
+        -ResultFormat junit
+        -Engine playwright
+        -Tags "full-suite"
+        -Team "web-developers"
+        -Project "qualtiva-website-tests"
+        -Application "qualtiva-website"
+        -Product "qualtiva"
+        -Environment "dev"
         
     - name: Upload HTML Report
       uses: actions/upload-artifact@v4
