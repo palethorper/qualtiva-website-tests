@@ -181,6 +181,18 @@ BROWSER=firefox npm test
 
 ## 📈 Continuous Integration
 
+The test suite includes optimized GitHub Actions workflows with caching for faster execution:
+
+### Caching Strategy
+
+The CI/CD pipeline uses two types of caching to speed up test runs:
+
+1. **NPM Dependency Caching**: Automatically caches `node_modules` to avoid re-downloading packages
+2. **Playwright Browser Caching**: Caches downloaded browser binaries to avoid re-installing browsers on every run
+   - Cache key includes OS and Playwright version for proper cache invalidation
+   - Browsers are only downloaded/installed on cache misses (version updates or new OS)
+   - Typically saves 2-3 minutes per test job
+
 ### GitHub Actions Example
 
 ```yaml
@@ -194,8 +206,27 @@ jobs:
     - uses: actions/setup-node@v3
       with:
         node-version: 18
+        cache: 'npm'
     - run: npm ci
-    - run: npm run install-browsers
+    
+    # Cache Playwright browsers
+    - name: Get Playwright version
+      id: playwright-version
+      run: echo "version=$(npm list @playwright/test --depth=0 --json | jq -r '.dependencies["@playwright/test"].version')" >> $GITHUB_OUTPUT
+    
+    - name: Cache Playwright browsers
+      uses: actions/cache@v3
+      id: playwright-cache
+      with:
+        path: ~/.cache/ms-playwright
+        key: ${{ runner.os }}-playwright-${{ steps.playwright-version.outputs.version }}
+        restore-keys: |
+          ${{ runner.os }}-playwright-
+    
+    - name: Install Playwright browsers
+      if: steps.playwright-cache.outputs.cache-hit != 'true'
+      run: npx playwright install --with-deps
+    
     - run: npm run test:ci
     - uses: actions/upload-artifact@v3
       if: always()
