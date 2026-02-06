@@ -55,22 +55,20 @@ jobs:
         CI: true
         BASE_URL: https://www-dev.analytiqa.cloud/
         
-    - name: Upload test results
+    - name: Upload HTML Report
       uses: actions/upload-artifact@v4
       if: always()
       with:
-        name: playwright-report-${{ matrix.node-version }}
-        path: |
-          playwright-report/
-          test-results/
-        retention-days: 30
+        name: playwright-report-node${{ matrix.node-version }}
+        path: playwright-report/
+        retention-days: 5
         
-    - name: Upload test results to GitHub
+    - name: Upload JUnit & JSON Results
       uses: actions/upload-artifact@v4
       if: always()
       with:
-        name: playwright-results-${{ matrix.node-version }}
+        name: test-results-node${{ matrix.node-version }}
         path: test-results/
-        retention-days: 30
+        retention-days: 5
 
  
