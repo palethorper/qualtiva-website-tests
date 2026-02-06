@@ -116,6 +116,7 @@ Reports are generated in multiple formats:
 - **Enhanced Settings**: Geolocation, permissions, viewport configurations
 - **Multiple Reporters**: HTML, JSON, JUnit
 - **Global Setup/Teardown**: Environment preparation and cleanup
+- **CI Optimization**: 4 parallel workers for faster test execution (~10 minutes for full suite)
 
 ### Test Files
 
