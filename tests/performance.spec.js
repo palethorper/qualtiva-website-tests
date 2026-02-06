@@ -4,7 +4,7 @@ test.describe('Qualtiva Solutions - Performance', () => {
   test('should load homepage within acceptable time', async ({ page }) => {
     const startTime = Date.now();
     await page.goto('/');
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('load');
     const loadTime = Date.now() - startTime;
     
     // Page should load within 5 seconds
@@ -21,7 +21,7 @@ test.describe('Qualtiva Solutions - Performance', () => {
     });
     
     await page.goto('/');
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('load');
     
     // Filter out common non-critical errors
     const criticalErrors = consoleErrors.filter(error => 

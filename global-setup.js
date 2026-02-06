@@ -13,7 +13,7 @@ async function globalSetup(config) {
     console.log('📡 Checking website accessibility...');
     try {
       await page.goto('https://www-dev.analytiqa.cloud/', { timeout: 10000 });
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('load');
       
       // Basic health check
       const title = await page.title();

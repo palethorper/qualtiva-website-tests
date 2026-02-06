@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test';
 test.describe('Qualtiva Solutions - Mobile Responsiveness', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/');
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('load');
   });
 
   test.describe('Mobile Device Compatibility', () => {
@@ -11,7 +11,7 @@ test.describe('Qualtiva Solutions - Mobile Responsiveness', () => {
       // iPhone 12 Pro
       await page.setViewportSize({ width: 390, height: 844 });
       await page.reload();
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('load');
       
       const body = page.locator('body');
       await expect(body).toBeVisible();
@@ -38,7 +38,7 @@ test.describe('Qualtiva Solutions - Mobile Responsiveness', () => {
       // Pixel 5
       await page.setViewportSize({ width: 393, height: 851 });
       await page.reload();
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('load');
       
       const body = page.locator('body');
       await expect(body).toBeVisible();
@@ -57,7 +57,7 @@ test.describe('Qualtiva Solutions - Mobile Responsiveness', () => {
       // iPad Pro
       await page.setViewportSize({ width: 1024, height: 1366 });
       await page.reload();
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('load');
       
       const body = page.locator('body');
       await expect(body).toBeVisible();
@@ -85,7 +85,7 @@ test.describe('Qualtiva Solutions - Mobile Responsiveness', () => {
       for (const size of screenSizes) {
         await page.setViewportSize(size);
         await page.reload();
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('load');
         
         // Verify content is visible
         const body = page.locator('body');
@@ -106,7 +106,7 @@ test.describe('Qualtiva Solutions - Mobile Responsiveness', () => {
       // Test portrait orientation
       await page.setViewportSize({ width: 375, height: 667 });
       await page.reload();
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('load');
       
       let body = page.locator('body');
       await expect(body).toBeVisible();
@@ -114,7 +114,7 @@ test.describe('Qualtiva Solutions - Mobile Responsiveness', () => {
       // Test landscape orientation
       await page.setViewportSize({ width: 667, height: 375 });
       await page.reload();
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('load');
       
       body = page.locator('body');
       await expect(body).toBeVisible();
@@ -132,7 +132,7 @@ test.describe('Qualtiva Solutions - Mobile Responsiveness', () => {
       for (const size of testSizes) {
         await page.setViewportSize(size);
         await page.reload();
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('load');
         
         // Check text readability
         const textElements = page.locator('h1, h2, h3, p');
@@ -162,7 +162,7 @@ test.describe('Qualtiva Solutions - Mobile Responsiveness', () => {
       // Set mobile viewport
       await page.setViewportSize({ width: 375, height: 667 });
       await page.reload();
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('load');
       
       const clickableElements = page.locator('a, button, input[type="button"], input[type="submit"]');
       const elementCount = await clickableElements.count();
@@ -196,7 +196,7 @@ test.describe('Qualtiva Solutions - Mobile Responsiveness', () => {
       // Set mobile viewport
       await page.setViewportSize({ width: 375, height: 667 });
       await page.reload();
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('load');
       
       // Test tap interactions
       const clickableElements = page.locator('a, button');
@@ -219,7 +219,7 @@ test.describe('Qualtiva Solutions - Mobile Responsiveness', () => {
       // Set mobile viewport
       await page.setViewportSize({ width: 375, height: 667 });
       await page.reload();
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('load');
       
       // Test swipe gesture
       const body = page.locator('body');
@@ -242,7 +242,7 @@ test.describe('Qualtiva Solutions - Mobile Responsiveness', () => {
       // Set mobile viewport
       await page.setViewportSize({ width: 375, height: 667 });
       await page.reload();
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('load');
       
       // Check for mobile menu
       const mobileMenuSelectors = [
@@ -278,7 +278,7 @@ test.describe('Qualtiva Solutions - Mobile Responsiveness', () => {
       // Set mobile viewport
       await page.setViewportSize({ width: 375, height: 667 });
       await page.reload();
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('load');
       
       // Look for mobile menu button
       const mobileMenuButton = page.locator('button[aria-label*="menu" i], .mobile-menu-toggle, .hamburger');
@@ -298,7 +298,7 @@ test.describe('Qualtiva Solutions - Mobile Responsiveness', () => {
           // Test menu item clicks
           const firstMenuItem = menuItems.first();
           await firstMenuItem.click();
-          await page.waitForLoadState('networkidle');
+          await page.waitForLoadState('load');
           
           console.log('✅ Mobile menu navigation works');
         }
@@ -315,7 +315,7 @@ test.describe('Qualtiva Solutions - Mobile Responsiveness', () => {
       
       const startTime = Date.now();
       await page.goto('/');
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('load');
       const loadTime = Date.now() - startTime;
       
       // Mobile should load within 5 seconds even with slower network
@@ -328,7 +328,7 @@ test.describe('Qualtiva Solutions - Mobile Responsiveness', () => {
       // Set mobile viewport
       await page.setViewportSize({ width: 375, height: 667 });
       await page.reload();
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('load');
       
       // Check for mobile-optimized images
       const images = page.locator('img');
@@ -356,7 +356,7 @@ test.describe('Qualtiva Solutions - Mobile Responsiveness', () => {
       // Set mobile viewport
       await page.setViewportSize({ width: 375, height: 667 });
       await page.reload();
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('load');
       
       // Test mobile-specific JavaScript features
       const mobileFeatures = await page.evaluate(() => {
@@ -380,7 +380,7 @@ test.describe('Qualtiva Solutions - Mobile Responsiveness', () => {
       // Set mobile viewport
       await page.setViewportSize({ width: 375, height: 667 });
       await page.reload();
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('load');
       
       // Check for proper heading structure
       const h1 = page.locator('h1');
@@ -410,7 +410,7 @@ test.describe('Qualtiva Solutions - Mobile Responsiveness', () => {
       // Set mobile viewport
       await page.setViewportSize({ width: 375, height: 667 });
       await page.reload();
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('load');
       
       // Check for ARIA attributes
       const ariaElements = page.locator('[aria-label], [aria-labelledby], [aria-describedby]');

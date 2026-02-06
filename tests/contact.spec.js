@@ -9,7 +9,7 @@ test.describe('Qualtiva Solutions - Contact', () => {
     
     if (await contactLink.count() > 0) {
       await contactLink.first().click();
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('load');
       
       // Verify we're on contact page
       expect(page.url()).toMatch(/contact/i);
@@ -48,7 +48,7 @@ test.describe('Qualtiva Solutions - Contact', () => {
     const contactLink = page.getByRole('link', { name: /contact/i });
     if (await contactLink.count() > 0) {
       await contactLink.first().click();
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('load');
       
       const form = page.locator('form').first();
       if (await form.count() > 0) {

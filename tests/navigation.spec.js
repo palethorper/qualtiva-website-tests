@@ -26,7 +26,7 @@ test.describe('Qualtiva Solutions - Navigation', () => {
           } else {
             // For internal links, navigate and verify
             await link.click();
-            await page.waitForLoadState('networkidle');
+            await page.waitForLoadState('load');
             
             // Verify we're not on an error page
             const pageContent = await page.textContent('body');
