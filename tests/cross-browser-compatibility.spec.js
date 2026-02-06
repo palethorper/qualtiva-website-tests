@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test';
 test.describe('Qualtiva Solutions - Cross-Browser Compatibility', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/');
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('load');
   });
 
   test.describe('Core Functionality Across Browsers', () => {
@@ -38,7 +38,7 @@ test.describe('Qualtiva Solutions - Cross-Browser Compatibility', () => {
             if (href && !href.startsWith('#')) {
               // Test link functionality
               await link.click();
-              await page.waitForLoadState('networkidle');
+              await page.waitForLoadState('load');
               
               // Verify page changed or loaded new content
               const currentUrl = page.url();
@@ -46,7 +46,7 @@ test.describe('Qualtiva Solutions - Cross-Browser Compatibility', () => {
               
               // Go back to test next link
               await page.goBack();
-              await page.waitForLoadState('networkidle');
+              await page.waitForLoadState('load');
             }
           }
         }
@@ -162,7 +162,7 @@ test.describe('Qualtiva Solutions - Cross-Browser Compatibility', () => {
       for (const viewport of viewports) {
         await page.setViewportSize(viewport);
         await page.reload();
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('load');
         
         // Check if layout adapts
         const body = page.locator('body');
@@ -181,7 +181,7 @@ test.describe('Qualtiva Solutions - Cross-Browser Compatibility', () => {
     test('should load within acceptable time in all browsers', async ({ page, browserName }) => {
       const startTime = Date.now();
       await page.goto('/');
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('load');
       const loadTime = Date.now() - startTime;
       
       // Different browsers may have different performance characteristics
@@ -259,7 +259,7 @@ test.describe('Qualtiva Solutions - Cross-Browser Compatibility', () => {
         // Test landscape orientation
         await page.setViewportSize({ width: 568, height: 320 });
         await page.reload();
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('load');
         
         const body = page.locator('body');
         await expect(body).toBeVisible();
@@ -267,7 +267,7 @@ test.describe('Qualtiva Solutions - Cross-Browser Compatibility', () => {
         // Test portrait orientation
         await page.setViewportSize({ width: 320, height: 568 });
         await page.reload();
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('load');
         
         await expect(body).toBeVisible();
         
@@ -341,7 +341,7 @@ test.describe('Qualtiva Solutions - Cross-Browser Compatibility', () => {
       });
       
       await page.goto('/');
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('load');
       
       // Filter out common non-critical errors
       const criticalErrors = consoleErrors.filter(error => 

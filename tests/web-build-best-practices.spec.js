@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test';
 test.describe('Qualtiva Solutions - Web Build Best Practices', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/');
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('load');
   });
 
   test.describe('SEO Best Practices', () => {
@@ -144,7 +144,7 @@ test.describe('Qualtiva Solutions - Web Build Best Practices', () => {
     test('should load within performance budget', async ({ page }) => {
       const startTime = Date.now();
       await page.goto('/');
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('load');
       const loadTime = Date.now() - startTime;
       
       // Performance budget: 3 seconds for initial load
@@ -184,7 +184,7 @@ test.describe('Qualtiva Solutions - Web Build Best Practices', () => {
       });
       
       await page.goto('/');
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('load');
       
       // Filter out common non-critical errors
       const criticalErrors = consoleErrors.filter(error => 
@@ -278,7 +278,7 @@ test.describe('Qualtiva Solutions - Web Build Best Practices', () => {
       for (const viewport of viewports) {
         await page.setViewportSize(viewport);
         await page.reload();
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('load');
         
         // Check if content is properly visible
         const body = page.locator('body');

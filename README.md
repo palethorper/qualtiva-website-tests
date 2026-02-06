@@ -216,12 +216,18 @@ jobs:
 2. **Test Timeout Issues**:
    - Increase timeout in `playwright.config.js`
    - Check network connectivity to the website
+   - **Important**: Avoid using `waitForLoadState('networkidle')` as it can cause tests to hang indefinitely on websites with persistent connections (WebSockets, long-polling, SSE). Use `'load'` or `'domcontentloaded'` instead.
 
-3. **Mobile Test Issues**:
+3. **Tests Hanging or Not Completing**:
+   - If tests appear stuck, check for `waitForLoadState('networkidle')` usage
+   - Replace with `waitForLoadState('load')` which waits for the page load event
+   - The `'load'` state is more reliable and doesn't wait for all network activity to cease
+
+4. **Mobile Test Issues**:
    - Ensure mobile viewport is set correctly
    - Check for mobile-specific selectors
 
-4. **Performance Test Failures**:
+5. **Performance Test Failures**:
    - Verify network conditions
    - Check for heavy resources on the website
 
@@ -239,6 +245,7 @@ npm run test:debug
 3. Include both positive and negative test cases
 4. Test across multiple browser profiles
 5. Update this README when adding new features
+6. **Best Practice**: Use `waitForLoadState('load')` instead of `'networkidle'` to avoid tests hanging on websites with persistent connections
 
 ## 📄 License
 
