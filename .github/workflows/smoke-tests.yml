@@ -52,7 +52,7 @@ jobs:
         -FileFilter "*results.xml"
         -ResultFormat junit
         -Engine playwright
-        -Tags "smoke"
+        -Tags "smoke,smoke-test"
         -Team "web-developers"
         -Project "qualtiva-website-tests"
         -Application "qualtiva-website"

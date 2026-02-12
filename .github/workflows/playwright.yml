@@ -59,7 +59,7 @@ jobs:
         -FileFilter "*results.xml"
         -ResultFormat junit
         -Engine playwright
-        -Tags "smoke"
+        -Tags "smoke,smoke-job"
         -Team "web-developers"
         -Project "qualtiva-website-tests"
         -Application "qualtiva-website"
@@ -131,7 +131,7 @@ jobs:
         -FileFilter "*results.xml"
         -ResultFormat junit
         -Engine playwright
-        -Tags "chromium,desktop,full-suite"
+        -Tags "chromium,desktop,full-suite,test-chromium"
         -Team "web-developers"
         -Project "qualtiva-website-tests"
         -Application "qualtiva-website"
@@ -203,7 +203,7 @@ jobs:
         -FileFilter "*results.xml"
         -ResultFormat junit
         -Engine playwright
-        -Tags "firefox,desktop,full-suite"
+        -Tags "firefox,desktop,full-suite,test-firefox"
         -Team "web-developers"
         -Project "qualtiva-website-tests"
         -Application "qualtiva-website"
@@ -275,7 +275,7 @@ jobs:
         -FileFilter "*results.xml"
         -ResultFormat junit
         -Engine playwright
-        -Tags "webkit,desktop,full-suite"
+        -Tags "webkit,desktop,full-suite,test-webkit"
         -Team "web-developers"
         -Project "qualtiva-website-tests"
         -Application "qualtiva-website"
@@ -347,7 +347,7 @@ jobs:
         -FileFilter "*results.xml"
         -ResultFormat junit
         -Engine playwright
-        -Tags "mobile,chrome,full-suite"
+        -Tags "mobile,chrome,full-suite,test-mobile-chrome"
         -Team "web-developers"
         -Project "qualtiva-website-tests"
         -Application "qualtiva-website"
@@ -419,7 +419,7 @@ jobs:
         -FileFilter "*results.xml"
         -ResultFormat junit
         -Engine playwright
-        -Tags "mobile,safari,full-suite"
+        -Tags "mobile,safari,full-suite,test-mobile-safari"
         -Team "web-developers"
         -Project "qualtiva-website-tests"
         -Application "qualtiva-website"
@@ -491,7 +491,7 @@ jobs:
         -FileFilter "*results.xml"
         -ResultFormat junit
         -Engine playwright
-        -Tags "tablet,ipad,full-suite"
+        -Tags "tablet,ipad,full-suite,test-tablet"
         -Team "web-developers"
         -Project "qualtiva-website-tests"
         -Application "qualtiva-website"
